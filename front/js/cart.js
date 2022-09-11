@@ -175,8 +175,8 @@ async function panier() {
         console.log(afficheqtt);
     
         tableau.forEach((product) => { //produt n'est pas defini//
-            prixproduits.push(product.price.toString().replace(/00/, "") * product._quantity);
-            quantitetotalproduits.push(product.quantity);
+            prixproduits.push(product._price.toString().replace(/00/, "") * product._quantity);
+            quantitetotalproduits.push(product._quantity);
         });
         console.log(prixproduits);
         console.log(quantitetotalproduits);
