@@ -63,9 +63,6 @@ fetch("http://localhost:3000/api/products/" + id_url)
         let imageUrl = document.querySelector("body > main > div > section > article > div.item__img > img").src;
         console.log(imageUrl);
 
-
-
-
         //Recuperation des choix de l' utilisateur dans la variable//
         let choixproduit = {
             id:id_url,
@@ -77,8 +74,6 @@ fetch("http://localhost:3000/api/products/" + id_url)
             
         }
         console.log(choixproduit);
-
-        // let boucle = 0;
 
 
         //Vérifier dans le local storage si il y a deja une key/value//
@@ -104,65 +99,9 @@ fetch("http://localhost:3000/api/products/" + id_url)
     }
 );
 
-function getProductsFromLocalStorage() {
-    const products = storageAccess.getItem("productCart")
-    if (!products) {
-        return {}
-    }
-    return JSON.parse(products)
-};
 
-function changeProductQuantity(id, color, quantity) {
-    let products = getProductsFromLocalStorage()
-    if (products[id][color]) {
-        products[id][color] = quantity
-    }
 
-    updateLocalStorage(products)
-    location.reload()
-}
-        // }else{
         
-        // console.log(choixproduit.id);
-
-
-    //     if (!produitdanslocalstorage){
-    //         produitdanslocalstorage = [];
-    //         produitdanslocalstorage.push(choixproduit);
-    //         localStorage.setItem("produit",JSON.stringify(produitdanslocalstorage));
-    //     }
-        
-    //     else {
-    //         for (let i = 0; i < produitdanslocalstorage.length; i++) { 
-    //             if (produitdanslocalstorage[i].colors === colors && produitdanslocalstorage[i].id === id){
-    //             produitdanslocalstorage[i].quantity += quantity;
-    //             boucle = 1;
-    //             }
-    //         } 
-        
-    //     if (boucle == 0){
-    //         produitdanslocalstorage.push(choixproduit);
-    //     }
-    //     localStorage.setItem("produit",JSON.stringify(produitdanslocalstorage));
-    // }
-// });
-
-    
-
-        // if(produitdanslocalstorage){
-        //     produitdanslocalstorage = [];
-        //     produitdanslocalstorage.push(choixproduit);
-        // }
-        
-
-        //     console.log(produitdanslocalstorage);
-        // }
-
-                    // // verifier pas de doubon dans le panier//    
-    
-
-    // );
-
 
 
 

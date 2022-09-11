@@ -9,9 +9,11 @@ console.log(insertpanier);
 let someproduct = [];
 let sommeProduits;
 
+
+///////----METHODE1----////
 // const removeProduct = async (panier) =>{
 //     await panier;
-//     console.log("je suis là");
+//     console.log("ICI");
 
 // let btnsupprimer = document.querySelectorAll(".deleteItem")
 // console.log(btnsupprimer);
@@ -20,10 +22,10 @@ let sommeProduits;
 //         supprimer.addEventListener("click",() =>{
 //         console.log(supprimer);
 
-//         let totalAddProduitRemove = produitdanslocalstorage.length;
-//         console.log(totalAddProduitRemove);
+//         let totalProduitRemove = produitdanslocalstorage.length;
+//         console.log(totalProduitRemove);
 
-//         if(totalAddProduitRemove == 1){
+//         if(totalProduitRemove == 1){
 //             return (
 //             localStorage.removeItem("produit"),
 //             console.log("remove all")
@@ -49,25 +51,8 @@ let sommeProduits;
 // };
 // removeProduct();
 
-// const changeProductQuantity =async (panier) =>{
-//     await (panier);
 
-//     let quantityItem = document.querySelectorAll(".itemQuantity")
-//     console.log(quantityItem);
-
-//     quantityItem.forEach((modifier) => {
-//         modifier.addEventListener("change",() => {
-//         console.log(modifier);
-
-
-//         })
-//     });
-
-
-// }
-// changeProductQuantity();
-
-
+///////----METHODE2----////
 // const supprimer = async (panier) =>{   
 //     await panier
 
@@ -97,89 +82,114 @@ let sommeProduits;
 // };
 // supprimer();
 
-// const retirer = async (panier) =>{
-//     await panier
+    /////-----METHODE3-----////
+const retirer = async (panier) =>{
+    await panier
 
-// let btnsupprimer = document.querySelectorAll(".deleteItem")
-// console.log(btnsupprimer);
+let btnsupprimer = document.querySelectorAll(".deleteItem")
+console.log(btnsupprimer);
 
-// for(let k = 0; k < btnsupprimer.length; k++) {
-//     btnsupprimer[k].addEventListener("click", () =>{
+for(let k = 0; k < btnsupprimer.length; k++) {
+    btnsupprimer[k].addEventListener("click", () =>{
 
-// let id_selectionner = produitdanslocalstorage[k].id;
-// console.log("id_selectionné");
-// console.log(id_selectionner);
+let id_selectionner = produitdanslocalstorage[k].id;
+console.log("id_selectionné");
+console.log(id_selectionner);
 
-// produitdanslocalstorage = produitdanslocalstorage.filter(el => el.id == id_selectionner);
-// console.log(produitdanslocalstorage);
+produitdanslocalstorage = produitdanslocalstorage.filter(el => el.id == id_selectionner);
+console.log(produitdanslocalstorage);
 
 
-// })
-// }
-// };
-// retirer();
+})
+}
+};
+retirer();
 
 
 async function panier() {
     let affichagepanier = [];
 
     for (i = 0; i < produitdanslocalstorage.length; i++) {
-                        affichagepanier = affichagepanier + 
-                            `<article class="cart__item" data-id="${produitdanslocalstorage[i]._id}" data-color="${produitdanslocalstorage[i].color}">
-                            <div class="cart__item__img">
-                            <img src=${produitdanslocalstorage[i]._img} alt="Photographie d'un canapé">
-                            </div>
-                            <div class="cart__item__content">
-                            <div class="cart__item__content__description">
-                                <h2>${produitdanslocalstorage[i]._title}</h2>
-                                <p>${produitdanslocalstorage[i].color}</p>
-                                <p>${produitdanslocalstorage[i]._price}€<p>
-                            </div>
-                            <div class="cart__item__content__settings">
-                                <div class="cart__item__content__settings__quantity">
-                                <p>Qté : </p>
-                                <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" value=${produitdanslocalstorage[i]._quantity}>
-                                </div>
-                                <div class="cart__item__content__settings__delete">
-                                <p class="deleteItem">Supprimer</p>
-                                </div>
-                            </div>
-                            </div>
-                        </article> `;
+        affichagepanier = affichagepanier + 
+            `<article class="cart__item" data-id="${produitdanslocalstorage[i]._id}" data-color="${produitdanslocalstorage[i].color}">
+            <div class="cart__item__img">
+            <img src=${produitdanslocalstorage[i]._img} alt="Photographie d'un canapé">
+            </div>
+            <div class="cart__item__content">
+            <div class="cart__item__content__description">
+                <h2>${produitdanslocalstorage[i]._title}</h2>
+                <p>${produitdanslocalstorage[i].color}</p>
+                <p>${produitdanslocalstorage[i]._price}€<p>
+            </div>
+            <div class="cart__item__content__settings">
+                <div class="cart__item__content__settings__quantity">
+                <p>Qté : </p>
+                <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" value=${produitdanslocalstorage[i]._quantity}>
+                </div>
+                <div class="cart__item__content__settings__delete">
+                <p class="deleteItem">Supprimer</p>
+                </div>
+            </div>
+            </div>
+        </article> `;
                                     }
     if (i === produitdanslocalstorage.length){
-    insertpanier.innerHTML = affichagepanier;};
+    insertpanier.innerHTML = affichagepanier;}
+
+    //Modifier quantité du panier//
+    const changeProductQuantity =async (panier) =>{
+        await (panier);
+
+        let quantityItem = document.querySelectorAll(".itemQuantity")
+        console.log(quantityItem);
+
+        quantityItem.forEach((modifier) => {
+            modifier.addEventListener("change",() => {
+                for(i=0; i<produitdanslocalstorage; i++){
+                    if(choixproduit[i].id == produitdanslocalstorage.id && choixproduit[i].color == produitdanslocalstorage.color){
+                        return(
+                            produitdanslocalstorage[i].quantity++,
+                            console.log("quantity++"),
+                            localStorage.setItem("produit",JSON.stringify(produitdanslocalstorage))
+                        )
+                    }
+                }
+            })
+        });
+    }
+    changeProductQuantity();
+    };
+
+    const calculproduit= async(panier) =>{
+        await panier;
     
-    };                               
+        console.log("calcul produit");
+    
+        let prixproduits = [];
+        let quantitetotalproduits = []; 
+    
+        let tableau = JSON.parse(localStorage.getItem("produit"));
+        console.log(tableau);
+        
+        let afficheqtt = document.querySelectorAll(".itemQuantity");
+        console.log(afficheqtt);
+    
+        tableau.forEach((product) => { //produt n'est pas defini//
+            prixproduits.push(product.price.toString().replace(/00/, "") * product._quantity);
+            quantitetotalproduits.push(product.quantity);
+        });
+        console.log(prixproduits);
+        console.log(quantitetotalproduits);
+    
+        totalQuantity.textContent = `${eval(quantitetotalproduits.join("+"))}`;
+    
+        sommeProduits = eval(prixproduits.toString().replace(/,/g,"+"));
+        totalPrice.textContent = sommeProduits;
+    };
+    calculproduit();
+    
 panier();
 
-const calculproduit= async(panier) =>{
-    await panier;
-
-    console.log("calcul produit");
-
-    let prixproduits = [];
-    let quantitetotalproduits = []; 
-
-    let tableau = JSON.parse(localStorage.getItem("produit"));
-    console.log(tableau);
-    
-    let afficheqtt = document.querySelectorAll(".itemQuantity");
-    console.log(afficheqtt);
-
-    tableau.forEach((product) => { //produt n'est pas defini//
-        prixproduits.push(product.price.toString().replace(/00/, "") * product._quantity);
-        quantitetotalproduits.push(product.quantity);
-    });
-    console.log(prixproduits);
-    console.log(quantitetotalproduits);
-
-    totalQuantity.textContent = `${eval(quantitetotalproduits.join("+"))}`;
-
-    sommeProduits = eval(prixproduits.toString().replace(/,/g,"+"));
-    totalPrice.textContent = sommeProduits;
-};
-calculproduit();
 
 ////FORMULAIRE/////
 const prenom = document.getElementById("firstName");
@@ -366,7 +376,7 @@ fetch("http://localhost:3000/api/products/order/", {
 const dataCommande = {
     contact : reponseServeur.contact,
     order : reponseServeur.orderId,
-    // Total : sommeProduits,
+    Total : sommeProduits,
 };
 
 if(commandeproduits == null){
@@ -377,8 +387,8 @@ if(commandeproduits == null){
     commandeproduits.push(dataCommande);
     localStorage.setItem("commandes",JSON.stringify(commandeproduits));
 }
-// localStorage.removeItem("produit");
-// location.href = "confirmation.html";
+localStorage.removeItem("produit");
+location.href = "confirmation.html";
 });
 }
 else{
@@ -386,88 +396,3 @@ else{
     }
 });
 console.log(commandeproduits);
-
-
-
-    
-        
-
-
-    
-
-
-
-
-
-///////Gestion bouton SUPPRIMER//
-
-//Selection du bouton//
-// function suppresion(){
-//     let btnsupprimer = document.getElementsByClassName("deleteItem");
-//     console.log(btnsupprimer);
-//     Object.values(btnsupprimer).forEach(btnsupprimer => {
-//         // Au clic de btnsupprimer on supprime le produit du ls
-//         btnsupprimer.addEventListener('click', function () {
-//             //closest permet de récupérer l'article le plus proche du deleteBtn en question
-//             let article = btnsupprimer.closest("article")
-//             let deleteBtnId = article.getAttribute("data-id")
-//             let deleteBtncolor = article.getAttribute("data-color")
-
-//             //Fonction récupérer dans le fichier localstorage, qui permet de supprimer le produit du ls
-//             removeProduct(deleteBtnId, deleteBtncolor)
-//         })
-//     })
-// };
-// suppresion();
-
-// function chgquantite(){
-//         // Changer la quantité d'un produit dans le ls
-//         //quantityItem renvoie un objet avec tous les éléments html sous forme de collection
-//         let quantityItem = document.getElementsByClassName("itemQuantity")
-
-//         // Object.values nous permet d'établir un tableau pour pouvoir boucler sur les éléments
-//         // for.each permet de boucler sur les boutons récupérers 
-
-//         Object.values(quantityItem).forEach(qty => {
-//             qty.addEventListener('change', function () {
-//                 let article = qty.closest("article")
-//                 let idData = article.getAttribute("data-id")
-//                 let idColor = article.getAttribute("data-color")
-//                 let newQuantity = qty.value
-
-//                 changeProductQuantity(idData, idColor, newQuantity)
-//             })
-//         })
-//     };
-// chgquantite();
-
-
-
-
-// for (k = 0; k < btnsupprimer.length; i++) {
-
-//     btnsupprimer[k].addEventListener("click", () => {
-//         console.log("bouton cliqué");
-
-//         let id_suppresion = produitdanslocalstorage[k].id_url;
-//         console.log("id_suppresion");
-//     })
-// }
-
-
-
-                                // }  )                                
-                                    //insertion element html dans panier
-                                    // let trouverproduit = produitdanslocalstorage.find(p => p.id == choixproduit.id);
-                                    // if (trouverproduit != undefined){
-                                    //     trouverproduit+quantity++;
-                                    // }else{
-                                    //     choixproduit._quantity = 1;
-                                    //     produitdanslocalstorage.push(choixproduit);
-                                    // }
-                                    // console.log(choixproduit.id);
-                            
-        
-                            // }
-
-// 
